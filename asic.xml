@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-07-16T09:19:49Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>ASIC Template</template>
+            <name>ASIC Template</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>BITMAIN</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>ASIC</name>
+                    <key>asic.discovery</key>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Chains</name>
+                            <key>asic.chains[{#ASICIP}]</key>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>not ({last(#3)} - {#ASICCHAINS}) = 0</expression>
+                                    <name>{#ASICIP} {#ASICTYPE} Ошибки железа</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Fan 1</name>
+                            <key>asic.fan[{#ASICIP},1]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Fan 2</name>
+                            <key>asic.fan[{#ASICIP},2]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Hashrate</name>
+                            <key>asic.hashrate[{#ASICIP}]</key>
+                            <value_type>FLOAT</value_type>
+                            <units>MH/S(RT)</units>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&lt;=0</expression>
+                                    <name>{#ASICIP} {#ASICTYPE} Хэшрейт 0</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Temperature</name>
+                            <key>asic.temp[{#ASICIP}]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;70</expression>
+                                    <name>{#ASICIP} {#ASICTYPE} перегревается &gt;70°</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;80</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;=78</recovery_expression>
+                                    <name>{#ASICIP} {#ASICTYPE} перегревается &gt;80°</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#ASICTYPE} Ping</name>
+                            <key>net.tcp.port[{#TRUEASICIP},{#ASICPORT}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>BITMAIN</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=0</expression>
+                                    <name>{#ASICIP} {#ASICTYPE} Не отвечает на запросы</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>{#ASICIP} {#ASICTYPE} Fan</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>199C0D</color>
+                                    <item>
+                                        <host>ASIC Template</host>
+                                        <key>asic.fan[{#ASICIP},1]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <item>
+                                        <host>ASIC Template</host>
+                                        <key>asic.fan[{#ASICIP},2]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#ASICIP} {#ASICTYPE} Hashrate</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>199C0D</color>
+                                    <calc_fnc>ALL</calc_fnc>
+                                    <item>
+                                        <host>ASIC Template</host>
+                                        <key>asic.hashrate[{#ASICIP}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#ASICIP} {#ASICTYPE} Temperature</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>199C0D</color>
+                                    <calc_fnc>MAX</calc_fnc>
+                                    <item>
+                                        <host>ASIC Template</host>
+                                        <key>asic.temp[{#ASICIP}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
