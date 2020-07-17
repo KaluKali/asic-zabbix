@@ -22,7 +22,4 @@ Add this UserParameter in end your zabbix_agent.conf file
 
 `UserParameter=asic.temp[*],python3 "/your/path/asic.py" -t $1`
 
-Linking template to your zabbix host 
-
-
-
+Linking template to your zabbix host
