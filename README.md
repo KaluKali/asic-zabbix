@@ -1,5 +1,5 @@
 # Zabbix Template for your BITMAIN ASIC
-
+###### Tested L3+ and S9
 #### What needed?
 Python 3+
 #### How to start?
