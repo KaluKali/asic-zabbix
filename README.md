@@ -8,7 +8,7 @@ Import asic.xml into your zabbix
 
 Copy source code in your server
 
-Replace "/your/path/asic.py" with the path to your source files
+Replace "/your/path/asic.py" with the path to file "asic.py"
 
 Add this UserParameter in end your zabbix_agent.conf file
  
