@@ -1,5 +1,8 @@
 # Zabbix Template for your BITMAIN ASIC
 
+#### Tested
+We are testing our script on antminer L3+ and S9 with original frimware(L3) and vnish 3.8.6(S9)
+
 #### What needed?
 Python 3+
 #### How to start?
