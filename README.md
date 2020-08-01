@@ -24,7 +24,7 @@ Add this UserParameter in end your zabbix_agent.conf file
 
 Add in file saved_hosts asic ip's. For example: 10.10.10.10,10.10.10.2,10.10.10.100:3000
 
+Linking template to your zabbix host 
+
 #### !!! Attention !!!
 If you use forwarding port, you most be forward to port 4028
-
-Linking template to your zabbix host 
