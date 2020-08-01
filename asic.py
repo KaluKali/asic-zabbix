@@ -29,6 +29,7 @@ class CCLi(ArgumentParser):
         self._cli(self.parse_args())
 
     def _cli(self, parse_args_object):
+        # todo: parse_args_object.__dict__
         work_list = parse_args_object._get_kwargs()
         if len(work_list) != 0:
             for m in work_list:
@@ -101,7 +102,7 @@ class CCLi(ArgumentParser):
             chains = 0
             for chain in filter(lambda x: "chain_acs" in x, [*stats_object[1].keys()]):
                 if stats_object[1][chain] != "":
-                    chains += stats_object[1][chain].strip().replace(" ", "").count("o")
+                    chains += stats_object[1][chain].count("o")
             return chains
         else:
             return 0

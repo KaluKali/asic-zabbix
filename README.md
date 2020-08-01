@@ -1,5 +1,5 @@
 # Zabbix Template for your BITMAIN ASIC
-###### Tested L3+ and S9
+
 #### What needed?
 Python 3+
 #### How to start?
@@ -8,7 +8,7 @@ Import asic.xml into your zabbix
 
 Copy source code in your server
 
-Replace "/your/path/asic.py" with the path to file "asic.py"
+Replace "/your/path/asic.py" with the path to your source files
 
 Add this UserParameter in end your zabbix_agent.conf file
  
@@ -21,7 +21,5 @@ Add this UserParameter in end your zabbix_agent.conf file
 `UserParameter=asic.discovery,python3 "/your/path/asic.py" -at`
 
 `UserParameter=asic.temp[*],python3 "/your/path/asic.py" -t $1`
-
-Write into 'saved_hosts' ASIC ip's through virgule. For example: 10.10.10.10, 10.10.10.2, 10.10.10.3, 10.10.10.10:3000
 
 Linking template to your zabbix host 

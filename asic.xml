@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>4.4</version>
-    <date>2020-07-16T09:19:49Z</date>
+    <version>5.0</version>
+    <date>2020-08-01T00:00:00Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -36,7 +36,9 @@
                             </applications>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>not ({last(#3)} - {#ASICCHAINS}) = 0</expression>
+                                    <expression>{last(#3)}&lt;&gt;{#ASICCHAINS}</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last(#3)}={#ASICCHAINS}</recovery_expression>
                                     <name>{#ASICIP} {#ASICTYPE} Ошибки железа</name>
                                     <priority>AVERAGE</priority>
                                 </trigger_prototype>
@@ -92,6 +94,8 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&gt;70</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last(#2)}&lt;69</recovery_expression>
                                     <name>{#ASICIP} {#ASICTYPE} перегревается &gt;70°</name>
                                     <priority>AVERAGE</priority>
                                 </trigger_prototype>
