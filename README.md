@@ -22,4 +22,6 @@ Add this UserParameter in end your zabbix_agent.conf file
 
 `UserParameter=asic.temp[*],python3 "/your/path/asic.py" -t $1`
 
+Write into 'saved_hosts' ASIC ip's through virgule. For example: 10.10.10.10, 10.10.10.2, 10.10.10.3, 10.10.10.10:3000
+
 Linking template to your zabbix host 
