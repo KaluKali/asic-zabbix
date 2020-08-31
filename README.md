@@ -30,4 +30,4 @@ Add in file saved_hosts asic ip's. For example: 10.10.10.10,10.10.10.2,10.10.10.
 Linking template to your zabbix host 
 
 #### !!! Attention !!!
-If you use forwarding port, you must be forwarding to port 4028
+If you use port-forwarding, you must be forwarding to port 4028
